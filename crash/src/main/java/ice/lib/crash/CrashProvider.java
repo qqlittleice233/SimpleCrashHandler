@@ -15,7 +15,9 @@ import android.net.Uri;
 public class CrashProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
-        new CrashHandler(getContext());
+        if (Config.setHandlerOnMainThreadWhenAppStart) {
+            new CrashHandler(getContext());
+        }
         return false;
     }
 
